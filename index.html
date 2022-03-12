@@ -5,46 +5,31 @@
     </head>
     <body>
         <div><h1>二大三中體溫表單</h1></div>
-        <button type="button" onclick="morning();">早上</button>
-        <button type="button" onclick="noon();">中午</button>
-        <button type="button" onclick="night();">晚上</button>
-        <button type="button" onclick="back();">回營</button>
+        <button type="button" onclick="temperature('morning');">早上</button>
+        <button type="button" onclick="temperature('noon');">中午</button>
+        <button type="button" onclick="temperature('night');">晚上</button>
+        <button type="button" onclick="back();">返營</button>
     </body>
-
+    
 </html>
 
 <script type="text/javascript">
     var num = '068'
     var name = '林伯勳'
     
-    function morning(){
-        var d = new Date()
-        var mon = '&entry.1143409054_month=' + (d.getMonth() + 1).toString()
-        var date = '&entry.1143409054_day=' + d.getDate().toString()
-        var tem = '&entry.1749175720=' + (getRandom(361, 368) / 10).toString()
+    function temperature(time){
+        var date = new Date()
+        var month = '&entry.1143409054_month=' + (date.getMonth() + 1).toString()
+        var day = '&entry.1143409054_day=' + date.getDate().toString()
+        var celsius = ''
+        if (time === 'morning') celsius = '&entry.1749175720='
+        else if (time === 'noon') celsius = '&entry.1181770395='
+        else if (time === 'night') celsius = '&entry.475486894='
+        celsius += (getRandom(361, 368) / 10).toString()
+        
         // &entry.389236916=受訓人員
         var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
-        url += mon + date + tem + '&entry.1544370930=' + num + '&entry.1207190508=' + name
-        window.open(url, '_blank')
-    }
-
-    function noon(){
-        var d = new Date()
-        var mon = '&entry.1143409054_month=' + (d.getMonth() + 1).toString()
-        var date = '&entry.1143409054_day=' + d.getDate().toString()
-        var tem = '&entry.1181770395=' + (getRandom(361, 368) / 10).toString()
-        var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
-        url += mon + date + tem + '&entry.1544370930=' + num + '&entry.1207190508=' + name
-        window.open(url, '_blank')
-    }
-
-    function night(){
-        var d = new Date()
-        var mon = '&entry.1143409054_month=' + (d.getMonth() + 1).toString()
-        var date = '&entry.1143409054_day=' + d.getDate().toString()
-        var tem = '&entry.475486894=' + (getRandom(361, 368) / 10).toString()
-        var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
-        url += mon + date + tem + '&entry.1544370930=' + num + '&entry.1207190508=' + name
+        url += month + day + celsius + '&entry.1544370930=' + num + '&entry.1207190508=' + name
         window.open(url, '_blank')
     }
 
