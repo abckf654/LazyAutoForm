@@ -10,13 +10,16 @@
         <button type="button" onclick="temperature('night');">晚上</button>
         <button type="button" onclick="back();">返營</button>
     </body>
-    
+
 </html>
 
 <script type="text/javascript">
-    var num = '068'
-    var name = '林伯勳'
-    
+    const url = new URL(window.location.href) 
+    const num = decodeURI(url.searchParams.get('p1'))
+    const name = decodeURI(url.searchParams.get('p2'))
+    const minCel = 358
+    const maxCel = 368
+
     function temperature(time){
         var date = new Date()
         var month = '&entry.1143409054_month=' + (date.getMonth() + 1).toString()
@@ -25,7 +28,7 @@
         if (time === 'morning') celsius = '&entry.1749175720='
         else if (time === 'noon') celsius = '&entry.1181770395='
         else if (time === 'night') celsius = '&entry.475486894='
-        celsius += (getRandom(361, 368) / 10).toString()
+        celsius += (getRandom(minCel, maxCel) / 10).toString()
         
         // &entry.389236916=受訓人員
         var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
