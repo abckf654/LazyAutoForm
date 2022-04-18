@@ -17,9 +17,16 @@
     const url = new URL(window.location.href) 
     const num = decodeURI(url.searchParams.get('p1'))
     const name = decodeURI(url.searchParams.get('p2'))
-    const minCel = 358
-    const maxCel = 368
+    const taipeiHighestMonthlyAvg = 30.1
+    const taipeiLowestMonthlyAvg = 16.6
+    const minCel = 36.0
+    const maxCel = 36.9
 
+    function getMonthlyAvgTemp(month){
+        float[] taipeiMonthlyAvgTemp = {16.6, 17.2, 19.0, 22.5, 25.8, 28.3, 30.1, 29.7, 27.8, 24.7, 22.0, 18.2}
+        return taipeiMonthlyAvgTemp[month-1];
+    }
+    
     function temperature(time){
         var date = new Date()
         var month = '&entry.1143409054_month=' + (date.getMonth() + 1).toString()
@@ -28,7 +35,7 @@
         if (time === 'morning') celsius = '&entry.1749175720='
         else if (time === 'noon') celsius = '&entry.1181770395='
         else if (time === 'night') celsius = '&entry.475486894='
-        celsius += (getRandom(minCel, maxCel) / 10.0).toString()
+        celsius += getRandom(date.getMonth()).toString()
         
         // &entry.389236916=受訓人員
         var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
@@ -43,8 +50,11 @@
         window.open(url, '_blank')
     }
 
-    function getRandom(min, max){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    function getRandom(currentMonth){
+        var currentMonthlyAvg = getMonthlyAvgTemp(currentMonth)
+        var stdBodyTemp = (maxCel - minCel) / (taipeiHighestMonthlyAvg - taipeiLowestMonthlyAvg) * (currentMonthlyAvg - taipeiLowestMonthlyAvg) + minCel
+        var randTemp = stdBodyTemp - Math.random()/2
+        return Math.round10((randTemp < minCel? minCel : randTemp), -1);
 };
 </script>
 
