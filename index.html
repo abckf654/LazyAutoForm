@@ -17,6 +17,8 @@
     const url = new URL(window.location.href) 
     const num = decodeURI(url.searchParams.get('p1'))
     const name = decodeURI(url.searchParams.get('p2'))
+    const trainee = decodeURI(url.searchParams.get('p3'))
+    const rank  = decodeURI(url.searchParams.get('p4'))
     const minCel = 35.8
     const maxCel = 36.8
 
@@ -29,17 +31,17 @@
         else if (time === 'noon') celsius = '&entry.1181770395='
         else if (time === 'night') celsius = '&entry.475486894='
         celsius += getRandom(minCel, maxCel)
-        
+
         // &entry.389236916=受訓人員
-        var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.890249600=常備兵141梯&entry.741539512=二兵&entry.374441232=男&entry.1143409054_year=2022'
-        url += month + day + celsius + '&entry.1544370930=' + num + '&entry.1207190508=' + name
+        var url = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDq6pXmKkgaoysLZHxE6s72Lgu4yZ08Ga0TDVY4fbIX0hUYg/formResponse?&entry.345124281=二大三中隊&entry.374441232=男&entry.1143409054_year=2022'
+        url += month + day + celsius + '&entry.1544370930=' + num + '&entry.1207190508=' + name+ '&entry.890249600=' + trainee + '&entry.741539512=' + rank
         window.open(url, '_blank')
     }
 
     function back(){
         // &entry.1521831837=受訓人員
-        var url = 'https://docs.google.com/forms/d/e/1FAIpQLSeDO2lG1p7FYqYuvMC7gvflL5cY2hzNPSZaeDp6wHf4QK4OXA/formResponse?entry.1814438920=二大隊三中隊&entry.714823907=常備兵141梯&entry.258509493=二兵&entry.1353092485=男&entry.1808271352=否&entry.720446599=否&entry.904447045=無&entry.1344470792=否&entry.596621020=否&entry.1883977732=否'
-        url += '&entry.120212219=' + num + '&entry.628011580=' + name
+        var url = 'https://docs.google.com/forms/d/e/1FAIpQLSeDO2lG1p7FYqYuvMC7gvflL5cY2hzNPSZaeDp6wHf4QK4OXA/formResponse?entry.1814438920=二大隊三中隊&entry.1353092485=男&entry.1808271352=否&entry.720446599=否&entry.904447045=無&entry.1344470792=否&entry.596621020=否&entry.1883977732=否'
+        url += '&entry.120212219=' + num + '&entry.628011580=' + name + '&entry.714823907=' + trainee + '&entry.258509493=' + rank
         window.open(url, '_blank')
     }
 
