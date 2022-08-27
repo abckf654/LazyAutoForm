@@ -8,7 +8,7 @@ This is a system designed for a `healthy` person who is currently servicing in t
 | author | 123standup |
 | :---: | :---: 
 | support | TsumaHibiki
-| Email | brianlin0816@gmail.com
+| Email | pohsunlin16@gmail.com
 
 ****
 
